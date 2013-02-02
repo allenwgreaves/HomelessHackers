@@ -10,19 +10,36 @@ namespace HomelessHackers.Data
 {
     public class DataContext
     {
-        public virtual IEnumerable<Organization> GetOrganizations()
+        protected virtual string ConnectionString
+        {
+            get
+            {
+                return "mongodb://localhost";
+            }
+        }
+
+        protected virtual MongoDatabase GetDatabase()
         {
             const string connectionString = "mongodb://localhost";
             var client = new MongoClient( connectionString );
             var server = client.GetServer();
-            var database = server.GetDatabase( "homeless" );
-            var organization = database.GetCollection<Organization>("organizations");
-            return organization.Find(new QueryDocument()).ToList();
+            return server.GetDatabase( "homeless" );
         }
 
-        public virtual IEnumerable<Volunteer> GetServices()
+        private MongoCollection<TDataType> GetCollection<TDataType>()
         {
-            return Enumerable.Empty<Volunteer>();
+            var database = GetDatabase();
+            return database.GetCollection<TDataType>(typeof(TDataType).Name.ToLower());
+        }
+
+        public virtual IEnumerable<Organization> GetOrganizations()
+        {
+            return GetCollection<Organization>().Find(new QueryDocument()).ToList();
+        }
+
+        public virtual IEnumerable<Volunteer> GetVolunteers()
+        {
+            return GetCollection<Volunteer>().Find( new QueryDocument() ).ToList();
         }
     }
 }
