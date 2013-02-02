@@ -8,6 +8,7 @@ namespace HomelessHackers.Models
         public ObjectId _id { get; set; }
         public ObjectId OrganizationId { get; set; }
         public string Type { get; set; }
+        public int Quantity { get; set; }
         public DateTime? NeededByDate { get; set; }
     }
 }
