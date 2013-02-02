@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using HomelessHackers.Data;
 using HomelessHackers.Models;
+using MongoDB.Bson;
 
 namespace HomelessHackers.Web.Controllers.api
 {
@@ -26,12 +27,19 @@ namespace HomelessHackers.Web.Controllers.api
         }
 
         // POST api/Volunteer
-        public void Post([FromBody] Volunteer value)
+        public void Post([FromBody] Donation value)
         {
+            DataContext db = new DataContext();
+
+            if (db.GetOrganizations(value.OrganizationName).Any())
+            {
+                value._id = ObjectId.GenerateNewId().ToString();
+                db.AddDonationsToOrganization(value.OrganizationName, value);
+            }
         }
 
         // PUT api/Volunteer/5
-        public void Put(int id, [FromBody] Volunteer value)
+        public void Put(int id, [FromBody] Donation value)
         {
         }
 
