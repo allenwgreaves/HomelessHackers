@@ -20,10 +20,10 @@ namespace HomelessHackers.Web.Controllers.api
         }
 
         // GET api/donations/5
-        public IEnumerable<Donation> Get(string id)
+        public Donation Get(string id)
         {
             DataContext db = new DataContext();
-            return db.GetDonations(id);
+            return db.GetDonations().SingleOrDefault(d => d._id == id);
         }
 
         // GET api/Volunteer/search/Hair
