@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using HomelessHackers.Models;
 
 namespace HomelessHackers.Web.Controllers
 {
@@ -10,100 +8,24 @@ namespace HomelessHackers.Web.Controllers
     {
         //
         // GET: /Organizations/
-        private api.OrganizationsController apiController = new api.OrganizationsController();
+        private readonly api.OrganizationsController apiController = new api.OrganizationsController();
 
 
         public ActionResult Index()
         {
-            var results = apiController.Get();
+            IEnumerable<Organization> results = apiController.Get();
 
-            return View(results);
+            return View( results );
         }
 
         //
         // GET: /Organizations/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details( string id )
         {
-            return View();
-        }
+            Organization results = apiController.Get( id );
 
-        //
-        // GET: /Organizations/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Organizations/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Organizations/Edit/5
-
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Organizations/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Organizations/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Organizations/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return View( results );
         }
     }
 }
