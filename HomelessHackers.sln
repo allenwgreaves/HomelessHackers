@@ -1,7 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomelessHackers.Web", "src\HomelessHackers.Web\HomelessHackers.Web.csproj", "{ABED19FB-B5B0-4E05-A1EA-18DA28698816}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomelessHackers.Web.Tests", "src\HomelessHackers.Web.Tests\HomelessHackers.Web.Tests.csproj", "{B013EECC-F4DD-4D12-A807-A63631D1859E}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABED19FB-B5B0-4E05-A1EA-18DA28698816}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABED19FB-B5B0-4E05-A1EA-18DA28698816}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABED19FB-B5B0-4E05-A1EA-18DA28698816}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABED19FB-B5B0-4E05-A1EA-18DA28698816}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B013EECC-F4DD-4D12-A807-A63631D1859E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B013EECC-F4DD-4D12-A807-A63631D1859E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B013EECC-F4DD-4D12-A807-A63631D1859E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B013EECC-F4DD-4D12-A807-A63631D1859E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
