@@ -59,6 +59,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\HomelessHackers.Models\HomelessHackers.Models.csproj">
+      <Project>{4fc122da-3c39-443a-812b-0aeb5a25dba9}</Project>
+      <Name>HomelessHackers.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomelessHackers.Web\HomelessHackers.Web.csproj">
       <Project>{ABED19FB-B5B0-4E05-A1EA-18DA28698816}</Project>
       <Name>HomelessHackers.Web</Name>

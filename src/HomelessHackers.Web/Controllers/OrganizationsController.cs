@@ -16,10 +16,10 @@ namespace HomelessHackers.Web.Controllers
         }
 
         // GET api/organizations/5
-        public Organization Get( string name )
+        public Organization Get( string id )
         {
             DataContext db = new DataContext();
-            return db.GetOrganizations( name ).First();
+            return db.GetOrganizations( id ).First();
         }
 
         // POST api/organizations
