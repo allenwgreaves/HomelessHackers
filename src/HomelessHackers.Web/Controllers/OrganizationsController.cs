@@ -9,7 +9,15 @@ namespace HomelessHackers.Web.Controllers
         // GET api/organizations
         public IEnumerable<Organization> Get()
         {
-            return new List<Organization>();
+            //return new List<Organization>();
+            var list = new List<Organization>();
+            list.AddRange(new[]{
+                new Organization { Name = "Kelly's mom", _id = System.Guid.NewGuid().ToString() },
+                new Organization { Name = "Kenny's mom", _id = System.Guid.NewGuid().ToString() },
+                new Organization { Name = "Adam's mom", _id = System.Guid.NewGuid().ToString() },
+                new Organization { Name = "Allen's mom", _id = System.Guid.NewGuid().ToString() }
+            });
+            return list;
         }
 
         // GET api/organizations/5
