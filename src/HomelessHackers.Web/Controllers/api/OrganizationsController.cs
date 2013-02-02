@@ -4,7 +4,7 @@ using System.Web.Http;
 using HomelessHackers.Models;
 using HomelessHackers.Data;
 
-namespace HomelessHackers.Web.Controllers
+namespace HomelessHackers.Web.Controllers.api
 {
     public class OrganizationsController : ApiController
     {

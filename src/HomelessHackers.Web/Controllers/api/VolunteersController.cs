@@ -1,10 +1,9 @@
 ﻿using HomelessHackers.Models;
 using System.Collections.Generic;
 using System.Web.Http;
-using System.Web.Services.Description;
 using HomelessHackers.Data;
 
-namespace HomelessHackers.Web.Controllers
+namespace HomelessHackers.Web.Controllers.api
 {
     public class VolunteersController : ApiController
     { 
