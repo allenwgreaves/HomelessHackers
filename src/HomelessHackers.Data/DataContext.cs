@@ -59,6 +59,18 @@ namespace HomelessHackers.Data
             return string.IsNullOrEmpty( name ) ? result.ToList() : result.Where(x => x.Name == name  ).ToList();
         }
 
+        public virtual Volunteer GetVolunteerById( string id )
+        {
+            var mapFunction = GetChildByIdMapFunction( "Volunteer", id );
+            var reduceFunction = GetChildByIdMapFunction();
+            var result = GetCollection<Organization>()
+                    .MapReduce( new BsonJavaScript( mapFunction ), new BsonJavaScript( reduceFunction ) )
+                    .GetResultsAs<VolunteerView>()
+                    .Select( x => x.value )
+                    .SingleOrDefault();
+            return result;
+        }
+
         public virtual IEnumerable<Volunteer> SearchVolunteers( string criteria )
         {
             var mapFunction = GetSimpleSearchMapFunction( "Volunteer", criteria );
@@ -71,6 +83,18 @@ namespace HomelessHackers.Data
             return results;
         }
 
+        public virtual Donation GetDonationById( string id )
+        {
+            var mapFunction = GetChildByIdMapFunction( "Donation", id );
+            var reduceFunction = GetChildByIdMapFunction();
+            var result = GetCollection<Organization>()
+                    .MapReduce( new BsonJavaScript( mapFunction ), new BsonJavaScript( reduceFunction ) )
+                    .GetResultsAs<DonationView>()
+                    .Select( x => x.value )
+                    .SingleOrDefault();
+            return result;
+        }
+
         public virtual IEnumerable<Donation> SearchDonations( string criteria )
         {
             var mapFunction = GetSimpleSearchMapFunction( "Donation", criteria );
@@ -81,6 +105,29 @@ namespace HomelessHackers.Data
                     .Select( x => x.value )
                     .ToList();
             return results;
+        }
+
+        private static string GetChildByIdMapFunction(string child, string id )
+        {
+            var mapFunction =
+                    @"function() {
+                            this." + child + @"s.forEach(function (value) {
+                            var criteria = '" + id + @"';
+                            if(value._id === criteria) {
+                                emit(value._id, value);
+                            }
+                        });
+                    }";
+            return mapFunction;
+        }
+
+        private static string GetChildByIdMapFunction()
+        {
+            var reduceFunction =
+                    @"function(id, child) {
+                            return child;
+                    }";
+            return reduceFunction;
         }
 
         private static string GetSimpleSearchMapFunction(string child, string criteria )
