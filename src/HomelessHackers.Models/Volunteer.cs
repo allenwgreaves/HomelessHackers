@@ -7,7 +7,7 @@ namespace HomelessHackers.Models
     {
         public ObjectId _id { get; set; }
         public string Name { get; set; }
-        public string OrganizationId { get; set; }
+        public string OrganizationName { get; set; }
         public DateTime? NeededByDate { get; set; }
         public DateTime? NeededUntil { get; set; }
     }

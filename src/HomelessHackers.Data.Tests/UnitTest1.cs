@@ -36,8 +36,8 @@ namespace HomelessHackers.Data.Tests
 
             var volunteers = database.GetCollection<Volunteer>("volunteers");
             volunteers.Remove(new QueryDocument());
-            volunteers.Insert( new Volunteer() { Name = "Hair Dresser", OrganizationId = "UGM" } );
-            volunteers.Insert( new Volunteer() { Name = "Hair Dresser", OrganizationId = "Cup-a-cool-water" } );
+            volunteers.Insert( new Volunteer() { Name = "Hair Dresser", OrganizationName = "UGM" } );
+            volunteers.Insert( new Volunteer() { Name = "Hair Dresser", OrganizationName = "Cup-a-cool-water" } );
         }
 
         [TestMethod]
@@ -53,7 +53,7 @@ namespace HomelessHackers.Data.Tests
 
             var volunteers = database.GetCollection<Volunteer>("volunteers");
             volunteers.Find(new QueryDocument()).ToList()
-                .ForEach(x => { Console.WriteLine( x.Name );Console.WriteLine(x.OrganizationId); });
+                .ForEach(x => { Console.WriteLine( x.Name );Console.WriteLine(x.OrganizationName); });
         }
 
         [TestMethod]
