@@ -3,69 +3,70 @@
 @{
     ViewBag.Title = "Details";
 }
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h2>Organization Detail: @Html.DisplayFor(model => model.Name)</h2>
+            </hgroup>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        <fieldset>
+            <legend>Organization</legend>
 
-<h2>Details</h2>
 
-<fieldset>
-    <legend>Organization</legend>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Name)
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model._id)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model._id)
-    </div>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Address1)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Address1)
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Address2)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Address2)
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Address1)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Address1)
-    </div>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.ZipCode)
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Address2)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Address2)
-    </div>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.City)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.City)
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.ZipCode)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ZipCode)
-    </div>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.State)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.State)
+            </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.City)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.City)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.State)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.State)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.PhoneNumber)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PhoneNumber)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </div>
+        </fieldset>
+        <p>
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </section>
+</div>
