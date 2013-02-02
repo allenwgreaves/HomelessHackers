@@ -3,14 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomelessHackers.Web", "src\HomelessHackers.Web\HomelessHackers.Web.csproj", "{ABED19FB-B5B0-4E05-A1EA-18DA28698816}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomelessHackers.Web.Tests", "src\HomelessHackers.Web.Tests\HomelessHackers.Web.Tests.csproj", "{B013EECC-F4DD-4D12-A807-A63631D1859E}"
+EndProject
+<<<<<<< Updated upstream
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{19C4501A-364C-4FFE-B045-0644107BCC47}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomelessHackers.Models", "src\HomelessHackers.Models\HomelessHackers.Models.csproj", "{4FC122DA-3C39-443A-812B-0AEB5A25DBA9}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomelessHackers.Models", "HomelessHackers.Models\HomelessHackers.Models.csproj", "{4FC122DA-3C39-443A-812B-0AEB5A25DBA9}"
+>>>>>>> Stashed changes
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +26,10 @@ Global
 		{ABED19FB-B5B0-4E05-A1EA-18DA28698816}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABED19FB-B5B0-4E05-A1EA-18DA28698816}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABED19FB-B5B0-4E05-A1EA-18DA28698816}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B013EECC-F4DD-4D12-A807-A63631D1859E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B013EECC-F4DD-4D12-A807-A63631D1859E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B013EECC-F4DD-4D12-A807-A63631D1859E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B013EECC-F4DD-4D12-A807-A63631D1859E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4FC122DA-3C39-443A-812B-0AEB5A25DBA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4FC122DA-3C39-443A-812B-0AEB5A25DBA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FC122DA-3C39-443A-812B-0AEB5A25DBA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
