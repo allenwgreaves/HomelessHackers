@@ -42,15 +42,17 @@ namespace HomelessHackers.Data
         public virtual IEnumerable<Volunteer> GetVolunteers(string name = null)
         {
             var query = string.IsNullOrEmpty( name ) ? new QueryDocument() : Query.EQ( "Volunteers.Name", name );
-            return GetCollection<Organization>().Find( new QueryDocument() )
-                .SelectMany( x => x.Volunteers ).Where(x => x.Name == name  ).ToList();
+            var result = GetCollection<Organization>().Find( new QueryDocument() )
+                .SelectMany( x => x.Volunteers );
+            return string.IsNullOrEmpty( name ) ? result.ToList() : result.Where(x => x.Name == name  ).ToList();
         }
 
         public virtual IEnumerable<Donation> GetDonations(string name = null)
         {
             var query = string.IsNullOrEmpty( name ) ? new QueryDocument() : Query.EQ( "Donations.Name", name );
-            return GetCollection<Organization>().Find( new QueryDocument() )
-                .SelectMany( x => x.Donations ).Where(x => x.Name == name  ).ToList();
+            var result = GetCollection<Organization>().Find( new QueryDocument() )
+                .SelectMany( x => x.Donations );
+            return string.IsNullOrEmpty( name ) ? result.ToList() : result.Where(x => x.Name == name  ).ToList();
         }
 
         public virtual IEnumerable<Volunteer> GetVolunteersForOrganization( string organizationName )
