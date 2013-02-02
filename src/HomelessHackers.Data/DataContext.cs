@@ -15,6 +15,12 @@ namespace HomelessHackers.Data
         public Volunteer value { get; set; }
     }
 
+    internal class DonationView
+    {
+        public string _id { get; set; }
+        public Donation value { get; set; }
+    }
+
     public class DataContext
     {
         protected virtual string ConnectionString
@@ -55,25 +61,49 @@ namespace HomelessHackers.Data
 
         public virtual IEnumerable<Volunteer> SearchVolunteers( string criteria )
         {
-            var mapFunction =
-                    @"function() {
-                            this.Volunteers.forEach(function (value) {
-                            var criteria = '" + criteria + @"';
-                            if(value.Name.match(criteria)) {
-                                emit(value._id, value);
-                            }
-                        });
-                    }";
-            var reduceFunction =
-                    @"function(id, volunteer) {
-                            return volunteer;
-                    }";
+            var mapFunction = GetSimpleSearchMapFunction( "Volunteer", criteria );
+            var reduceFunction = GetSimpleSearchReduceFunction();
             var results = GetCollection<Organization>()
                     .MapReduce( new BsonJavaScript( mapFunction ), new BsonJavaScript( reduceFunction ) )
                     .GetResultsAs<VolunteerView>()
                     .Select( x => x.value )
                     .ToList();
             return results;
+        }
+
+        public virtual IEnumerable<Donation> SearchDonations( string criteria )
+        {
+            var mapFunction = GetSimpleSearchMapFunction( "Donation", criteria );
+            var reduceFunction = GetSimpleSearchReduceFunction();
+            var results = GetCollection<Organization>()
+                    .MapReduce( new BsonJavaScript( mapFunction ), new BsonJavaScript( reduceFunction ) )
+                    .GetResultsAs<DonationView>()
+                    .Select( x => x.value )
+                    .ToList();
+            return results;
+        }
+
+        private static string GetSimpleSearchMapFunction(string child, string criteria )
+        {
+            var mapFunction =
+                    @"function() {
+                            this." + child + @"s.forEach(function (value) {
+                            var criteria = '" + criteria + @"';
+                            if(value.Name.match(criteria)) {
+                                emit(value._id, value);
+                            }
+                        });
+                    }";
+            return mapFunction;
+        }
+
+        private static string GetSimpleSearchReduceFunction()
+        {
+            var reduceFunction =
+                    @"function(id, volunteer) {
+                            return volunteer;
+                    }";
+            return reduceFunction;
         }
 
         public virtual IEnumerable<Donation> GetDonations(string name = null)
