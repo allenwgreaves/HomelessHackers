@@ -6,41 +6,8 @@
     <title></title>
     <script src="../Scripts/jquery-1.7.1.min.js"></script>
     <script src="../Scripts/knockout-2.1.0.js"></script>
-
-    <script type="text/javascript">
-        function OrganizationViewModel()
-        {
-            var self = this;
-            self.Organizations = ko.observableArray([]);
-            self.NewOrganization = ko.observable();
-            self.GetOrganizations = function () {
-                $.getJSON("/api/organizations/", null, function (data){
-                    self.Organizations(data);
-                });
-            };
-            self.SaveOrganization = function () {
-                $.ajax({
-                    type: "POST",
-                    url: "/api/organizations/",
-                    data: self.NewOrganization(),
-                    dataType: "Organization",
-                    success: function (msg) {
-                        alert("I did it: " + msg);
-                    }
-                });
-            };
-        }
-        $(document).ready(function () {
-
-            var viewmodel = new OrganizationViewModel();
-
-            viewmodel.GetOrganizations();
-
-            ko.applyBindings(viewmodel);
-                
-        });
-
-    </script>
+    <script src="../Scripts/organizations.js"></script>
+    
 </head>
 <body>
     
