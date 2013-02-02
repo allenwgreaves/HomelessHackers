@@ -1,0 +1,54 @@
+﻿@model HomelessHackers.Models.Volunteer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <a href="@Url.Action("Index", "Home")" >
+                    <img src="@Href("~/Content/homeless-hackers.png")" style="border: none;"/>
+                </a>
+            </hgroup>
+        </div>
+    </section>
+
+    <section class="content-wrapper main-content clear-fix">
+        <fieldset>
+            <legend>Volunteer</legend>
+
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.OrganizationName)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.OrganizationName)
+            </div>
+
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.NeededByDate)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.NeededByDate)
+            </div>
+
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.NeededUntil)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.NeededUntil)
+            </div>
+        </fieldset>
+        <p>
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </section>
+</div>

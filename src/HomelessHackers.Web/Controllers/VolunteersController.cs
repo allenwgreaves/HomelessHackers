@@ -24,9 +24,10 @@ namespace HomelessHackers.Web.Controllers
         //
         // GET: /Volunteers/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            var result = apiController.Get( id );
+            return View(result);
         }
 
         //

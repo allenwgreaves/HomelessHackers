@@ -17,10 +17,10 @@ namespace HomelessHackers.Web.Controllers.api
         }
 
         // GET api/Volunteer/5
-        public IEnumerable<Volunteer> Get(string id)
+        public Volunteer Get(string id)
         {
             DataContext db = new DataContext();
-            return db.GetVolunteers(id);
+            return db.GetVolunteers().SingleOrDefault(v => v._id == id);
         }
 
         // GET api/Volunteer/search/Beans
