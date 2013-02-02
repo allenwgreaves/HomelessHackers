@@ -7,8 +7,7 @@ namespace HomelessHackers.Models
 {
     public class Organization
     {
-        public ObjectId _id { get; set; }
-        public string Name { get; set; }
+        public string _id { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string ZipCode { get; set; }

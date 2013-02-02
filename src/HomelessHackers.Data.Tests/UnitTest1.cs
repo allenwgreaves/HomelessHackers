@@ -18,7 +18,7 @@ namespace HomelessHackers.Data.Tests
             var server = client.GetServer();
             var database = server.GetDatabase( "homeless" );
             var organizations = database.GetCollection<Organization>("organizations");
-            organizations.Insert( new Organization() { Name = "UGM" } );
+            organizations.Insert( new Organization() { _id = "UGM" } );
         }
 
         [TestMethod]
@@ -31,7 +31,6 @@ namespace HomelessHackers.Data.Tests
             var organizations = database.GetCollection<Organization>("organizations");
             var first = organizations.FindOne();
             Console.WriteLine(first._id);
-            Console.WriteLine(first.Name);
         }
 
         [TestMethod]
