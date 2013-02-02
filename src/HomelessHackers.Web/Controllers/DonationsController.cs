@@ -29,6 +29,11 @@ namespace HomelessHackers.Web.Controllers
             return View(result);
         }
 
-
+        [HttpPost]
+        public ActionResult Search( string search )
+        {
+            var results = ApiController.Search( search );
+            return View("Index", results );
+        }
     }
 }
