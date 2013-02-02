@@ -14,5 +14,15 @@ namespace HomelessHackers.Web.Tests.Controllers
             var organizations = controller.Get();
             Assert.IsNotNull( organizations );
         }
+
+        [TestMethod]
+        public void GetSpecificOrganization()
+        {
+            OrganizationsController controller = new OrganizationsController();
+            var organizations = controller.Get("UGM");
+            Assert.AreEqual("UGM", organizations.Name);
+        }
+
+        
     }
 }
