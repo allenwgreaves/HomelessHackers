@@ -23,6 +23,14 @@ namespace HomelessHackers.Web.Controllers.api
             return db.GetVolunteers(id);
         }
 
+        // GET api/Volunteer/search/Beans
+        [HttpGet]
+        public IEnumerable<Volunteer> Search(string searchName)
+        {
+            DataContext db = new DataContext();
+            return db.SearchVolunteers( searchName );
+        }
+
         // POST api/Volunteer
         public void Post([FromBody] Volunteer value)
         {
