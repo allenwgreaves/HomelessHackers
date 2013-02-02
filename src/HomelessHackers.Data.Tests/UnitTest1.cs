@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HomelessHackers.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -29,15 +30,30 @@ namespace HomelessHackers.Data.Tests
             var client = new MongoClient( connectionString );
             var server = client.GetServer();
             var database = server.GetDatabase( "homeless" );
-            var organizations = database.GetCollection<Organization>("organizations");
-            organizations.Remove(new QueryDocument());
-            organizations.Insert( new Organization() { Name = "UGM" } );
-            organizations.Insert( new Organization() { Name = "Cup-a-cool-water" } );
-
             var volunteers = database.GetCollection<Volunteer>("volunteers");
             volunteers.Remove(new QueryDocument());
-            volunteers.Insert( new Volunteer() { Name = "Hair Dresser", OrganizationName = "UGM" } );
-            volunteers.Insert( new Volunteer() { Name = "Hair Dresser", OrganizationName = "Cup-a-cool-water" } );
+            var organizations = database.GetCollection<Organization>("organizations");
+            organizations.Remove(new QueryDocument());
+            organizations.Insert( new Organization()
+            {
+                    _id = ObjectId.GenerateNewId().ToString(),
+                    Name = "UGM",
+                    Volunteers =
+                            new List<Volunteer>()
+                            {
+                                    new Volunteer() { _id = ObjectId.GenerateNewId().ToString(), Name = "Hair Dresser", OrganizationName = "UGM" }
+                            }
+            } );
+            organizations.Insert( new Organization()
+            {
+                    _id = ObjectId.GenerateNewId().ToString(),
+                    Name = "Cup-a-cool-water",
+                    Volunteers =
+                            new List<Volunteer>()
+                            {
+                                    new Volunteer() { _id = ObjectId.GenerateNewId().ToString(), Name = "Hair Dresser", OrganizationName = "Cup-a-cool-water" }
+                            }
+            } );
         }
 
         [TestMethod]
@@ -50,10 +66,6 @@ namespace HomelessHackers.Data.Tests
             var organizations = database.GetCollection<Organization>("organizations");
             var first = organizations.FindOne();
             Console.WriteLine(first.Name);
-
-            var volunteers = database.GetCollection<Volunteer>("volunteers");
-            volunteers.Find(new QueryDocument()).ToList()
-                .ForEach(x => { Console.WriteLine( x.Name );Console.WriteLine(x.OrganizationName); });
         }
 
         [TestMethod]

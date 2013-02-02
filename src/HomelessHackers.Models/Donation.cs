@@ -5,7 +5,7 @@ namespace HomelessHackers.Models
 {
     public class Donation
     {
-        public ObjectId _id { get; set; }
+        public string _id { get; set; }
         public string Name { get; set; }
         public string OrganizationName { get; set; }
         public int Quantity { get; set; }
