@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using HomelessHackers.Models;
 using HomelessHackers.Data;
@@ -12,22 +13,13 @@ namespace HomelessHackers.Web.Controllers
         {
             DataContext db = new DataContext();
             return db.GetOrganizations();
-            //return new List<Organization>();
-            /*var list = new List<Organization>();
-            
-            list.AddRange(new[]{
-                new Organization { Name = "Kelly's mom", _id = System.Guid.NewGuid().ToString() },
-                new Organization { Name = "Kenny's mom", _id = System.Guid.NewGuid().ToString() },
-                new Organization { Name = "Adam's mom", _id = System.Guid.NewGuid().ToString() },
-                new Organization { Name = "Allen's mom", _id = System.Guid.NewGuid().ToString() }
-            });
-            return list;*/
         }
 
         // GET api/organizations/5
-        public Organization Get( int id )
+        public Organization Get( string name )
         {
-            return new Organization();
+            DataContext db = new DataContext();
+            return db.GetOrganizations( name ).First();
         }
 
         // POST api/organizations
