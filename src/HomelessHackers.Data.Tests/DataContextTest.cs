@@ -232,10 +232,10 @@ namespace HomelessHackers.Data.Tests
         {
             var dataContext = new DataContext();
             int result = dataContext.GetDonationsForOrganization("UGM").Count();
-            dataContext.AddDonationsForOrganization("UGM", new Donation() { _id = ObjectId.GenerateNewId().ToString(), Name = "Blankets", OrganizationName = "UGM", Quantity = 50 });
+            dataContext.AddDonationsToOrganization("UGM", new Donation() { _id = ObjectId.GenerateNewId().ToString(), Name = "Blankets", OrganizationName = "UGM", Quantity = 50, NeededByDate = new DateTime(2013, 02, 03, 06, 00, 00) });
             
             
-            Assert.AreNotEqual<int>((result), dataContext.GetDonationsForOrganization("UGM").Count());
+            Assert.AreNotEqual<int>(result, dataContext.GetDonationsForOrganization("UGM").Count());
         }
     }
 }

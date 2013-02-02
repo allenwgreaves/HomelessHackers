@@ -73,12 +73,15 @@ namespace HomelessHackers.Data
                 .Find( Query<Organization>.EQ( x => x.Name, organizationName) ).SelectMany( x => x.Donations ).ToList();
         }
 
-        public virtual void AddDonationsForOrganization( string organizationName, Donation newDonation)
+        public virtual void AddDonationsToOrganization( string organizationName, Donation newDonation)
         {
+            //var collection = GetCollection<Organization>().Find( Query<Organization>.EQ( x => x.Name, organizationName) ).SelectMany(x => x.Donations).ToList();
             var collection = GetCollection<Organization>();
             var query = Query.EQ("Name", organizationName);
-            var update = Update.Set("Donations", newDonation.ToBson<Donation>());
+            
+            var update = Update.AddToSet("Donations", newDonation.ToBson<Donation>());
             collection.Update(query, update); //cant deserialize stuffs
+
         }
     }
 }
