@@ -29,10 +29,10 @@ namespace HomelessHackers.Data
         private MongoCollection<TDataType> GetCollection<TDataType>()
         {
             var database = GetDatabase();
-            return database.GetCollection<TDataType>(typeof(TDataType).Name.ToLower());
+            return database.GetCollection<TDataType>(typeof(TDataType).Name.ToLower() + "s");
         }
 
-        public virtual IEnumerable<Organization> GetOrganizations()
+        public virtual IEnumerable<Organization> GetOrganizations(string id = null)
         {
             return GetCollection<Organization>().Find(new QueryDocument()).ToList();
         }
@@ -40,6 +40,11 @@ namespace HomelessHackers.Data
         public virtual IEnumerable<Volunteer> GetVolunteers()
         {
             return GetCollection<Volunteer>().Find( new QueryDocument() ).ToList();
+        }
+
+        public virtual IEnumerable<Donation> GetDonations()
+        {
+            return GetCollection<Donation>().Find( new QueryDocument() ).ToList();
         }
     }
 }
