@@ -41,7 +41,8 @@ namespace HomelessHackers.Data.Tests
                     Volunteers =
                             new List<Volunteer>()
                             {
-                                    new Volunteer() { _id = ObjectId.GenerateNewId().ToString(), Name = "Hair Dresser", OrganizationName = "UGM" }
+                                    new Volunteer() { _id = ObjectId.GenerateNewId().ToString(), Name = "Hair Dresser", OrganizationName = "UGM" },
+                                    new Volunteer() { _id = ObjectId.GenerateNewId().ToString(), Name = "Food Taster", OrganizationName = "UGM" },
                             }
             } );
             organizations.Insert( new Organization()
@@ -64,8 +65,11 @@ namespace HomelessHackers.Data.Tests
             var server = client.GetServer();
             var database = server.GetDatabase( "homeless" );
             var organizations = database.GetCollection<Organization>("organizations");
-            var first = organizations.FindOne();
+            var first =
+                    organizations.Find( Query.EQ( "Volunteers.Name", "Hair Dresser" ) )
+                                 .FirstOrDefault();
             Console.WriteLine(first.Name);
+            first.Volunteers.Where(x => x.Name == "Hair Dresser" ).ToList().ForEach( x => Console.WriteLine(x.Name) );
         }
 
         [TestMethod]

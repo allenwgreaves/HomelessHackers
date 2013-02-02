@@ -41,14 +41,16 @@ namespace HomelessHackers.Data
 
         public virtual IEnumerable<Volunteer> GetVolunteers(string name = null)
         {
-            var query = string.IsNullOrEmpty( name ) ? new QueryDocument() : Query<Volunteer>.EQ( x => x.Name, name );
-            return GetCollection<Volunteer>().Find( new QueryDocument() ).ToList();
+            var query = string.IsNullOrEmpty( name ) ? new QueryDocument() : Query.EQ( "Volunteers.Name", name );
+            return GetCollection<Organization>().Find( new QueryDocument() )
+                .SelectMany( x => x.Volunteers ).Where(x => x.Name == name  ).ToList();
         }
 
         public virtual IEnumerable<Donation> GetDonations(string name = null)
         {
-            var query = string.IsNullOrEmpty( name ) ? new QueryDocument() : Query<Donation>.EQ( x => x.Name, name );
-            return GetCollection<Donation>().Find( new QueryDocument() ).ToList();
+            var query = string.IsNullOrEmpty( name ) ? new QueryDocument() : Query.EQ( "Donations.Name", name );
+            return GetCollection<Organization>().Find( new QueryDocument() )
+                .SelectMany( x => x.Donations ).Where(x => x.Name == name  ).ToList();
         }
 
         public virtual IEnumerable<Volunteer> GetVolunteersForOrganization( string organizationName )
@@ -57,8 +59,8 @@ namespace HomelessHackers.Data
             {
                 throw new ArgumentNullException( "organizationName" );
             }
-            return GetCollection<Volunteer>()
-                .Find( Query<Volunteer>.EQ( x => x.OrganizationName, organizationName) ).ToList();
+            return GetCollection<Organization>()
+                .Find( Query<Organization>.EQ( x => x.Name, organizationName) ).SelectMany( x => x.Volunteers ).ToList();
         }
 
         public virtual IEnumerable<Donation> GetDonationsForOrganization( string organizationName )
