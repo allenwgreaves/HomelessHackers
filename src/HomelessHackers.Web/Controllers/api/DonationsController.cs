@@ -26,6 +26,14 @@ namespace HomelessHackers.Web.Controllers.api
             return db.GetDonations(id);
         }
 
+        // GET api/Volunteer/search/Hair
+        [HttpGet]
+        public IEnumerable<Donation> Search(string searchName)
+        {
+            DataContext db = new DataContext();
+            return db.SearchDonations( searchName );
+        }
+
         // POST api/Volunteer
         public void Post([FromBody] Donation value)
         {

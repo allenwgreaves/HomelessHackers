@@ -14,6 +14,11 @@ namespace HomelessHackers.Web
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.Routes.MapHttpRoute(
+                name: "SearchApi",
+                routeTemplate: "api/{controller}/search/{searchName}",
+                defaults: new { searchName = RouteParameter.Optional }
+            );
         }
     }
 }
