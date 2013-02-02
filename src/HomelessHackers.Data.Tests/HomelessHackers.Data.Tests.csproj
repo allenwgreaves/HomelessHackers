@@ -63,11 +63,16 @@
   <ItemGroup>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DataContextTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HomelessHackers.Data\HomelessHackers.Data.csproj">
+      <Project>{820b312f-fe15-443b-83eb-7bce362899c9}</Project>
+      <Name>HomelessHackers.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomelessHackers.Models\HomelessHackers.Models.csproj">
       <Project>{4FC122DA-3C39-443A-812B-0AEB5A25DBA9}</Project>
       <Name>HomelessHackers.Models</Name>
