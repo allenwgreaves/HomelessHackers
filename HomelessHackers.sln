@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomelessHackers.Web", "src\HomelessHackers.Web\HomelessHackers.Web.csproj", "{ABED19FB-B5B0-4E05-A1EA-18DA28698816}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomelessHackers.Web.Tests", "src\HomelessHackers.Web.Tests\HomelessHackers.Web.Tests.csproj", "{B013EECC-F4DD-4D12-A807-A63631D1859E}"
