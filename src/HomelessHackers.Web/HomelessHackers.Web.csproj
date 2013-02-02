@@ -138,6 +138,7 @@
     <Compile Include="Controllers\api\ListingsController.cs" />
     <Compile Include="Controllers\api\OrganizationsController.cs" />
     <Compile Include="Controllers\api\VolunteersController.cs" />
+    <Compile Include="Controllers\DonationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrganizationsController.cs" />
     <Compile Include="Controllers\VolunteersController.cs" />
@@ -253,6 +254,7 @@
     <Content Include="Views\Organizations\Details.cshtml" />
     <Content Include="Views\Volunteers\Index.cshtml" />
     <Content Include="Views\Volunteers\Details.cshtml" />
+    <Content Include="Views\Donations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
