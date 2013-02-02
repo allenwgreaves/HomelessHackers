@@ -20,7 +20,7 @@ namespace HomelessHackers.Web.Controllers.api
         public Volunteer Get(string id)
         {
             DataContext db = new DataContext();
-            return db.GetVolunteers().SingleOrDefault(v => v._id == id);
+            return db.GetVolunteerById( id );
         }
 
         // GET api/Volunteer/search/Beans
