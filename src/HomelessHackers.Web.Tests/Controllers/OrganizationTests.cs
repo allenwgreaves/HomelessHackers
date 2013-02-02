@@ -1,5 +1,5 @@
 ﻿using System;
-using HomelessHackers.Web.Controllers;
+using HomelessHackers.Web.Controllers.api;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace HomelessHackers.Web.Tests.Controllers

@@ -10,11 +10,14 @@ namespace HomelessHackers.Web.Controllers
     {
         //
         // GET: /Organizations/
+        private api.OrganizationsController apiController = new api.OrganizationsController();
+
 
         public ActionResult Index()
         {
+            var results = apiController.Get();
 
-            return View();
+            return View(results);
         }
 
         //
