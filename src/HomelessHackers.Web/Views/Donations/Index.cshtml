@@ -18,11 +18,13 @@
             </hgroup>
         </div>
     </section>
-    <section class="content-wrapper main-content clear-fix">
-        @{ using (Html.BeginForm( "Search", "Donations" ))
-
-    
+    <section class="content-wrapper">
+        @using (Html.BeginForm( "Search", "Donations" ))
+        {
+            <input type="text" name="searchName"/>
+            <input type="Submit" name="Search"></input>
         }
+
         
     </section>
     <section class="content-wrapper main-content clear-fix">

@@ -30,9 +30,9 @@ namespace HomelessHackers.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Search( string search )
+        public ActionResult Search( string searchName )
         {
-            var results = ApiController.Search( search );
+            var results = ApiController.Search(searchName);
             return View("Index", results );
         }
     }
