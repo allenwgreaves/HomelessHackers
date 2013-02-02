@@ -12,9 +12,21 @@
         {
             var self = this;
             self.Organizations = ko.observableArray([]);
+            self.NewOrganization = ko.observable();
             self.GetOrganizations = function () {
                 $.getJSON("/api/organizations/", null, function (data){
                     self.Organizations(data);
+                });
+            };
+            self.SaveOrganization = function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/api/organizations/",
+                    data: self.NewOrganization(),
+                    dataType: "Organization",
+                    success: function (msg) {
+                        alert("I did it: " + msg);
+                    }
                 });
             };
         }
@@ -26,12 +38,18 @@
 
             ko.applyBindings(viewmodel);
                 
-            });
+        });
+
     </script>
 </head>
 <body>
     <ul data-bind="foreach: Organizations">
         <li data-bind="text: Name"></li>
     </ul>
+
+    <form data-bind="with: NewOrganization, submit: SaveOrganization">
+        Name: <input type="text" data-bind="value: Name" />
+        <button type="submit" />
+    </form>
 </body>
 </html>
