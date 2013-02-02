@@ -9,6 +9,12 @@ using MongoDB.Driver.Builders;
 
 namespace HomelessHackers.Data
 {
+    internal class VolunteerView
+    {
+        public string _id { get; set; }
+        public Volunteer value { get; set; }
+    }
+
     public class DataContext
     {
         protected virtual string ConnectionString
@@ -45,6 +51,29 @@ namespace HomelessHackers.Data
             var result = GetCollection<Organization>().Find( new QueryDocument() )
                 .SelectMany( x => x.Volunteers );
             return string.IsNullOrEmpty( name ) ? result.ToList() : result.Where(x => x.Name == name  ).ToList();
+        }
+
+        public virtual IEnumerable<Volunteer> SearchVolunteers( string criteria )
+        {
+            var mapFunction =
+                    @"function() {
+                            this.Volunteers.forEach(function (value) {
+                            var criteria = '" + criteria + @"';
+                            if(value.Name.match(criteria)) {
+                                emit(value._id, value);
+                            }
+                        });
+                    }";
+            var reduceFunction =
+                    @"function(id, volunteer) {
+                            return volunteer;
+                    }";
+            var results = GetCollection<Organization>()
+                    .MapReduce( new BsonJavaScript( mapFunction ), new BsonJavaScript( reduceFunction ) )
+                    .GetResultsAs<VolunteerView>()
+                    .Select( x => x.value )
+                    .ToList();
+            return results;
         }
 
         public virtual IEnumerable<Donation> GetDonations(string name = null)

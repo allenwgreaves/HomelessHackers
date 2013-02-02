@@ -247,5 +247,13 @@ namespace HomelessHackers.Data.Tests
 
             Assert.AreNotEqual<int>(result, dataContext.GetVolunteersForOrganization("UGM").Count());
         }
+
+        [TestMethod]
+        public void WhenSearchingVolunteersForHairItReturnsAllHairResults()
+        {
+            var dataContext = new DataContext();
+            var results = dataContext.SearchVolunteers( "Hair" );
+            Assert.AreNotEqual<int>(0, results.Count());
+        }
     }
 }
