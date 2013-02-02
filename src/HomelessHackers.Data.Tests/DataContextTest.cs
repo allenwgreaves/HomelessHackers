@@ -237,5 +237,15 @@ namespace HomelessHackers.Data.Tests
             
             Assert.AreNotEqual<int>(result, dataContext.GetDonationsForOrganization("UGM").Count());
         }
+
+        [TestMethod]
+        public void AddElementToVolunteers()
+        {
+            var dataContext = new DataContext();
+            int result = dataContext.GetVolunteersForOrganization("UGM").Count();
+            dataContext.AddVolunteersToOrganization("UGM", new Volunteer() { _id = ObjectId.GenerateNewId().ToString(), Name = "Volunteer", OrganizationName = "UGM", NeededByDate = new DateTime(2013, 02, 03, 06, 00, 00), NeededUntil = new DateTime(2013, 02, 03, 08, 00, 00) });
+
+            Assert.AreNotEqual<int>(result, dataContext.GetVolunteersForOrganization("UGM").Count());
+        }
     }
 }

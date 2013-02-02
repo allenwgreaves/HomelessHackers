@@ -80,5 +80,13 @@ namespace HomelessHackers.Data
                                Update<Organization>.Push( x => x.Donations, newDonation ) );
 
         }
+
+        public virtual void AddVolunteersToOrganization(string organizationName, Volunteer newVolunteer)
+        {
+            var collection = GetCollection<Organization>();
+            collection.Update(Query<Organization>.EQ(x => x.Name, organizationName),
+                               Update<Organization>.Push(x => x.Volunteers, newVolunteer));
+
+        }
     }
 }
