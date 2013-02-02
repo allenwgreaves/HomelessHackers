@@ -69,8 +69,8 @@ namespace HomelessHackers.Data
             {
                 throw new ArgumentNullException( "organizationName" );
             }
-            return GetCollection<Donation>()
-                .Find( Query<Donation>.EQ( x => x.OrganizationName, organizationName) ).ToList();
+            return GetCollection<Organization>()
+                .Find( Query<Organization>.EQ( x => x.Name, organizationName) ).SelectMany( x => x.Donations ).ToList();
         }
     }
 }
