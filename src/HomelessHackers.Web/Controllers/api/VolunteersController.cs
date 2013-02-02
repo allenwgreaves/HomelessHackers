@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using HomelessHackers.Data;
+using MongoDB.Bson;
+using System.Linq;
 
 namespace HomelessHackers.Web.Controllers.api
 {
@@ -24,6 +26,13 @@ namespace HomelessHackers.Web.Controllers.api
         // POST api/Volunteer
         public void Post([FromBody] Volunteer value)
         {
+            DataContext db = new DataContext();
+
+            if (db.GetOrganizations(value.OrganizationName).Any())
+            {
+                value._id = ObjectId.GenerateNewId().ToString();
+                db.AddVolunteersToOrganization(value.OrganizationName, value);
+            }
         }
 
         // PUT api/Volunteer/5
