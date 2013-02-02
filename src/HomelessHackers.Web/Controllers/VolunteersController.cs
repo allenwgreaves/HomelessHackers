@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Services.Description;
+using HomelessHackers.Data;
 
 namespace HomelessHackers.Web.Controllers
 {
@@ -10,6 +11,7 @@ namespace HomelessHackers.Web.Controllers
         // GET api/Volunteer
         public IEnumerable<Volunteer> Get()
         {
+            DataContext db = new DataContext();
             return new List<Volunteer>();
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
+using MongoDB.Bson;
+using HomelessHackers.Models;
 
 namespace HomelessHackers.Data.Tests
 {
@@ -223,6 +225,17 @@ namespace HomelessHackers.Data.Tests
             var result = dataContext.GetVolunteersForOrganization("UGM");
 
             Assert.AreEqual<string>("Hair Dresser", result.First().Name);
+        }
+
+        [TestMethod]
+        public void AddElementToDonations()
+        {
+            var dataContext = new DataContext();
+            int result = dataContext.GetDonationsForOrganization("UGM").Count();
+            dataContext.AddDonationsForOrganization("UGM", new Donation() { _id = ObjectId.GenerateNewId().ToString(), Name = "Blankets", OrganizationName = "UGM", Quantity = 50 });
+            
+            
+            Assert.AreNotEqual<int>((result), dataContext.GetDonationsForOrganization("UGM").Count());
         }
     }
 }
