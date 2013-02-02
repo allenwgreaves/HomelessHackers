@@ -1,24 +1,28 @@
-﻿using HomelessHackers.Models;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using HomelessHackers.Data;
+using HomelessHackers.Models;
 
 namespace HomelessHackers.Web.Controllers.api
 {
-    public class VolunteersController : ApiController
-    { 
-        // GET api/Volunteer
-        public IEnumerable<Volunteer> Get()
+    public class DonationsController : ApiController
+    {
+        // GET api/donations
+        public IEnumerable<Donation> Get()
         {
             DataContext db = new DataContext();
-            return db.GetVolunteers();
+            return db.GetDonations();
         }
 
-        // GET api/Volunteer/5
-        public IEnumerable<Volunteer> Get(string id)
+        // GET api/donations/5
+        public IEnumerable<Donation> Get(string id)
         {
             DataContext db = new DataContext();
-            return db.GetVolunteers(id);
+            return db.GetDonations(id);
         }
 
         // POST api/Volunteer
