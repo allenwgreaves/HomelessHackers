@@ -3,7 +3,7 @@ using MongoDB.Bson;
 
 namespace HomelessHackers.Models
 {
-    public class Service
+    public class Volunteer
     {
         public ObjectId _id { get; set; }
         public ObjectId OrganizationId { get; set; }

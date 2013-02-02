@@ -20,9 +20,9 @@ namespace HomelessHackers.Data
             return organization.Find(new QueryDocument()).ToList();
         }
 
-        public virtual IEnumerable<Services> GetServices()
+        public virtual IEnumerable<Volunteer> GetServices()
         {
-            return Enumerable.Empty<Services>();
+            return Enumerable.Empty<Volunteer>();
         }
     }
 }
