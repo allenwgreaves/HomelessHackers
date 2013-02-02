@@ -8,7 +8,14 @@ namespace HomelessHackers.Models
 {
     public class Organization
     {
+<<<<<<< HEAD
         public string _id { get; set; }
+=======
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string _id { get; set; }
+
+>>>>>>> 5d674e55f3f8e762e4de238819b55306948e66f0
         public string Name { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }

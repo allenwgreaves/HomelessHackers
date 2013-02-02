@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script type="text/javascript" src="Scripts/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="Scripts/knockout-2.2.1.js"></script>
+    
+    <script type="text/javascript">
+        function OrganizationViewModel()
+        {
+            var self = this;
+            self.Organizations = ko.observableArray([]);
+            self.GetOrganizations = function () {
+                $.getJSON("http://localhost:1829/api/organizations/", null, function (data){
+                    self.Organizations(data);
+                });
+            };
+        }
+        $(document).ready(function () {
+
+            var viewmodel = new OrganizationViewModel();
+
+            viewmodel.GetOrganizations();
+
+            ko.applyBindings(viewmodel);
+                
+            });
+    </script>
+</head>
+<body>
+    <ul data-bind="foreach: Organizations">
+        <li data-bind="text: Name"></li>
+    </ul>
+</body>
+</html>
