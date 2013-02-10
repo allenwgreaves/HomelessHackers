@@ -26,13 +26,10 @@ namespace HomelessHackers.Data.Tests
                 State = "Not-Insanity",
                 PhoneNumber = "(123)456-7891",
                 Volunteers = new List<Volunteer>()
-                            {
-                                    new Volunteer() { _id = ObjectId.GenerateNewId().ToString(), Name = "Hair Dresser", OrganizationName = "UGM", NeededByDate = new DateTime(2013, 02, 03, 06, 00, 00),
-                                    NeededUntil = new DateTime(2013, 02, 03, 07, 30, 00) 
-                                    },
-                                    new Volunteer() { _id = ObjectId.GenerateNewId().ToString(), Name = "Mechanic", OrganizationName = "UGM", NeededByDate = new DateTime(2013, 02, 03, 06, 00, 00),
-                                    NeededUntil = new DateTime(2013, 02, 03, 07, 30, 00) 
-                                    }
+                            {  new Volunteer() { _id = ObjectId.GenerateNewId().ToString(), Name = "Hair Dresser", OrganizationName = "UGM", NeededByDate = new DateTime(2013, 02, 03, 06, 00, 00),
+                               NeededUntil = new DateTime(2013, 02, 03, 07, 30, 00) },
+                               new Volunteer() { _id = ObjectId.GenerateNewId().ToString(), Name = "Mechanic", OrganizationName = "UGM", NeededByDate = new DateTime(2013, 02, 03, 06, 00, 00),
+                               NeededUntil = new DateTime(2013, 02, 03, 07, 30, 00) } 
                             },
                 Donations = new List<Donation>(){
                             new Donation() { _id = ObjectId.GenerateNewId().ToString(), Name = "Canned Beans", OrganizationName = "UGM", Quantity = 500, NeededByDate = new DateTime(2013, 02, 03, 06, 00, 00)},

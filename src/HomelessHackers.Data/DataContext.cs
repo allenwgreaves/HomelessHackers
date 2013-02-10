@@ -196,5 +196,45 @@ namespace HomelessHackers.Data
                                Update<Organization>.Push(x => x.Volunteers, newVolunteer));
 
         }
+
+        public virtual void RemoveVolunteerFromOrganization(string organizationName, Volunteer oldVolunteer)
+        {
+            var collection = GetCollection<Organization>();
+            collection.Update(Query<Organization>.EQ(x => x.Name, organizationName),
+                               Update<Organization>.Pull(x => x.Volunteers, oldVolunteer));
+
+        }
+
+        public virtual void RemoveDonationFromOrganization(string organizationName, Donation oldDonation)
+        {
+            var collection = GetCollection<Organization>();
+            collection.Update(Query<Organization>.EQ(x => x.Name, organizationName),
+                               Update<Organization>.Pull(x => x.Donations, oldDonation));
+
+        }
+
+        public virtual void RemoveVolunteersOfNameFromOrganization(string organizationName, string oldVolunteer)
+        {
+            var collection = GetCollection<Organization>();
+            IEnumerable<Volunteer> curVolunteers = GetVolunteersForOrganization(organizationName);
+            curVolunteers = (from c in curVolunteers
+                             where c.Name.Equals(oldVolunteer)
+                             select c);
+            collection.Update(Query<Organization>.EQ(x => x.Name, organizationName),
+                               Update<Organization>.PullAll(x => x.Volunteers, curVolunteers));
+
+        }
+
+        public virtual void RemoveDonationsOfNameFromOrganization(string organizationName, string oldDonation)
+        {
+            var collection = GetCollection<Organization>();
+            IEnumerable<Donation> curDonations = GetDonationsForOrganization(organizationName);
+            curDonations = (from c in curDonations
+                             where c.Name.Equals(oldDonation)
+                             select c);
+            collection.Update(Query<Organization>.EQ(x => x.Name, organizationName),
+                               Update<Organization>.PullAll(x => x.Donations, curDonations));
+
+        }
     }
 }

@@ -264,5 +264,49 @@ namespace HomelessHackers.Data.Tests
             var result = dataContext.GetDonationById( id );
             Assert.IsNotNull( result );
         }
+
+        [TestMethod]
+        public void RemoveSpecificDonationFromOrganization()
+        {
+            var dataContext = new DataContext();
+            int result = dataContext.GetDonationsForOrganization("UGM").Count();
+            Donation specificDonation = dataContext.GetDonationsForOrganization("UGM").FirstOrDefault();
+            dataContext.RemoveDonationFromOrganization("UGM", specificDonation);
+
+            Assert.AreNotEqual<int>(result, dataContext.GetDonationsForOrganization("UGM").Count());
+        }
+
+        [TestMethod]
+        public void RemoveSpecificVolunteerFromOrganization()
+        {
+            var dataContext = new DataContext();
+            int result = dataContext.GetVolunteersForOrganization("UGM").Count();
+            Volunteer specificVolunteer = dataContext.GetVolunteersForOrganization("UGM").FirstOrDefault();
+            dataContext.RemoveVolunteerFromOrganization("UGM", specificVolunteer);
+
+            Assert.AreNotEqual<int>(result, dataContext.GetVolunteersForOrganization("UGM").Count());
+        }
+
+        [TestMethod]
+        public void RemoveDonationsByNameFromOrganization()
+        {
+            var dataContext = new DataContext();
+            int result = dataContext.GetDonationsForOrganization("UGM").Count();
+            dataContext.RemoveDonationsOfNameFromOrganization("UGM", "Canned Beans");
+            
+            Assert.AreNotEqual<int>(result, dataContext.GetDonationsForOrganization("UGM").Count());
+            
+        }
+
+        [TestMethod]
+        public void RemoveVolunteersByNameFromOrganization()
+        {
+            var dataContext = new DataContext();
+            int result = dataContext.GetDonationsForOrganization("UGM").Count();
+            dataContext.RemoveVolunteersOfNameFromOrganization("UGM", "Hair Dresser");
+
+            Assert.AreNotEqual<int>(result, dataContext.GetVolunteersForOrganization("UGM").Count());
+            
+        }
     }
 }
